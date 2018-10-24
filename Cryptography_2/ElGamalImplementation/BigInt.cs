@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElGamalImplementation
 {
-    class BigInt
+    public class BigInt
     {
         public static uint MAX_DIGIT = UInt32.MaxValue;
 
@@ -32,6 +32,8 @@ namespace ElGamalImplementation
 
         public static BigInt operator *(BigInt self, BigInt other)
         {
+
+
             return null;
         }
 
@@ -57,7 +59,7 @@ namespace ElGamalImplementation
             List<uint> result = bigger.Words.ToList();
             bool carry = false;
 
-            for (int i = 0; i < result.Count; i++)
+            for (int i = result.Count - 1; i >= 0; i--)
             {
                 result[i] = unchecked(bigger[i] + smaller[i] + (uint)(carry ? 1 : 0));
 
@@ -68,7 +70,7 @@ namespace ElGamalImplementation
                 else carry = false;
 
             }
-            if (carry) result.Add(1);
+            if (carry) result.Prepend((uint)1);
 
             return new BigInt(result.ToArray());
         }
